@@ -87,4 +87,5 @@ class Question extends Model
         // $question->answers->count()
         // foreach ($question->answers as $answer)
     }
+
 }
