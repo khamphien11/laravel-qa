@@ -1,3 +1,4 @@
+
 <div class="row mt-4">
     <div class="col-md-12">
         <div class="card">
@@ -10,7 +11,7 @@
                     @csrf
                     <div class="form-group">
                         <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="7" name="body"></textarea>
-                        @if($errors->has('body'))
+                        @if ($errors->has('body'))
                             <div class="invalid-feedback">
                                 <strong>{{ $errors->first('body') }}</strong>
                             </div>

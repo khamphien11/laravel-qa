@@ -54,9 +54,11 @@ class Question extends Model
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str_slug($value);
     }
-//    public function setBodyAttribute($value){
-//        $this->attributes['body'] = clean($value);
-//    }
+
+    // public function setBodyAttribute($value)
+    // {
+    //     $this->attributes['body'] = clen($value);
+    // }
 
     public function getUrlAttribute()
     {
@@ -86,19 +88,20 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany(Answer::class);
-        // $question->answers->count()
-        // foreach ($question->answers as $answer)
+        return $this->hasMany(Answer::class)->orderBy('votes_count', 'DESC');
     }
+
     public function acceptBestAnswer(Answer $answer)
     {
         $this->best_answer_id = $answer->id;
         $this->save();
     }
-    public function favorites(){
-        return $this->belongsToMany(User::class,'favorites')->withTimestamps();
 
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps(); //, 'question_id', 'user_id');
     }
+
     public function isFavorited()
     {
         return $this->favorites()->where('user_id', auth()->id())->count() > 0;
