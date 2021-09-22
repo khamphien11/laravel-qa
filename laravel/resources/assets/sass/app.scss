@@ -80,6 +80,13 @@ form.form-delete{
     &.vote-accepted{
       color: $green;
     }
+    .post{
+      padding: 20px;
+      &:not(:last-child){
+        border-bottom: 1px solid rgba($black, .1);
+
+      }
+    }
 
   }
 
